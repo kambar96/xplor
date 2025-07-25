@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>City Break Finder</title>
+</head>
+<body>
+  <h1>Find a City Break</h1>
+  <form method="POST">
+    <label>Departure Airport:
+      <input type="text" name="airport" required>
+    </label><br><br>
+
+    <label>Preferred Departure Days:</label><br>
+    <input type="checkbox" name="departure_days" value="Friday"> Friday<br>
+    <input type="checkbox" name="departure_days" value="Saturday"> Saturday<br><br>
+
+    <label>Preferred Return Days:</label><br>
+    <input type="checkbox" name="return_days" value="Sunday"> Sunday<br>
+    <input type="checkbox" name="return_days" value="Monday"> Monday<br><br>
+
+    <label>Max Budget Per Person (£):
+      <input type="number" name="budget" min="50" max="200" value="100">
+    </label><br><br>
+
+    <button type="submit">Find Deals</button>
+  </form>
+
+  {% if results %}
+    <h2>Matching Deals:</h2>
+    <ul>
+    {% for deal in results %}
+      <li>
+        {{ deal['Destination'] }} – {{ deal['Price'] }} (Departing: {{ deal['Departing'] }}, Returning: {{ deal['Returning'] }}, From: {{ deal['Airport'] }})
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+</body>
+</html>
